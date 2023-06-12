@@ -1,7 +1,7 @@
 
 ###########################################################################################
-# wget -qO - https://raw.githubusercontent.com/MrTakashi/bash-scripts/master/.bashrc >> ~/.bashrc
-# curl https://raw.githubusercontent.com/MrTakashi/bash-scripts/master/.bashrc >> ~/.bashrc
+# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc
+# runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc'
 
 ###### mk settings for history
  # don't put lines starting with space in the history
