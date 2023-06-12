@@ -1,6 +1,6 @@
 
 " ###########################################################################################
-" # wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc >> ~/.vimrc
+" # wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc
 " wget -qO - http://i.sspx.ru/2 > ~/.vimrc
 " runuser -l mk -c 'wget -qO - http://i.sspx.ru/2 > ~/.vimrc'
 
