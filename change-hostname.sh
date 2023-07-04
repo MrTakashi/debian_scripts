@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###########################################################################################
-# wget -qO - https://raw.githubusercontent.com/MrTakashi/bash-scripts/master/change-hostname.sh | bash -s %new-name%
+# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/change-hostname.sh | bash -s %new-name%
 
 if [ -z "$1" ]; then
     echo "[ Host name changing script ]"
@@ -36,7 +36,7 @@ else
     echo
     echo
     echo "[ Setup zabbix-agent2 ]"
-    echo "# wget -qO - https://raw.githubusercontent.com/MrTakashi/bash-scripts/master/change-zabbix-agent2-settings.sh | bash -s $(uname -n) 10.10.20.120"
+    echo "# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/change-zabbix-agent2-settings.sh | bash -s $(uname -n) 10.10.20.120"
     echo
     echo
     echo "[ Reboot ]"
