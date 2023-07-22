@@ -50,10 +50,7 @@ else
     echo "# zabbix_agent2 -p"
     echo "# tail -f /var/log/zabbix/zabbix_agent2.log"
     echo
-    echo
-    echo "[ Reboot ]"
-    echo "# shutdown -r now"
-    echo
+
 
 fi
 
