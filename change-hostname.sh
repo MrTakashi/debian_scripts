@@ -18,10 +18,11 @@ if [ -z "$1" ]; then
 
 else
     echo
-    echo "### Try to set new hostname with command: hostnamectl set-hostname $1"
+    echo "[ 1/3 Try to set new hostname ]"
+    echo "hostnamectl set-hostname $1"
     hostnamectl set-hostname "$1"
     echo
-    echo "### Checking result"
+    echo "Checking result"
     echo "uname -n"
     uname -n
     echo
@@ -33,19 +34,22 @@ else
     cat /etc/hosts
     echo
     echo
-    echo "### Try to generate new machine-id"
-    echo "# rm -f /etc/machine-id && dbus-uuidgen --ensure=/etc/machine-id"
+
+    echo "[ 2/3 Try to generate new machine-id ]"
     rm -f /etc/machine-id
-    echo "# rm -f /etc/machine-id && dbus-uuidgen --ensure=/etc/machine-id"
+    echo "[OK] rm -f /etc/machine-id"
     dbus-uuidgen --ensure=/etc/machine-id
+    echo "[OK] dbus-uuidgen --ensure=/etc/machine-id"
+    echo
+
+    echo "[ 3/3 Try to configure zabbix-agent2 ]"
+    wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/change-zabbix-agent2-settings.sh | bash -s $(uname -n) 10.10.20.242
+    echo "[OK] wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/change-zabbix-agent2-settings.sh | bash -s $(uname -n) 10.10.20.242"
     echo
     echo
-    echo "[ Setup zabbix-agent2 ]"
-    echo "# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/change-zabbix-agent2-settings.sh | bash -s $(uname -n) 10.10.20.242"
-    echo
-    echo
-    echo "[ Reboot ]"
-    echo "# shutdown -r now"
+
+    echo "[ Next step -> Reboot ]"
+    echo "shutdown -r now"
     echo
 fi
 
