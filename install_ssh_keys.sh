@@ -18,7 +18,7 @@ echo "[ 4 ] disable PasswordAuthentication for ssh (keys auth only)"
 echo "[ 5 ] disable asswordAuthentication for ssh (keys auth only)"
 echo "[ 6 ] restart sshd service"
 echo "[ 7 ] testing github connection"
-echo "[ 8 ] remove ssh_keys folder
+echo "[ 8 ] remove ssh_keys folder"
 echo
 
 echo "################## [1] installing root's keys #################"
