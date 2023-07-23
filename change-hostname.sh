@@ -20,8 +20,7 @@ else
     echo
     echo "[ 1/3 Try to set new hostname ]"
     echo "hostnamectl set-hostname $1"
-    hostnamectl set-hostname "$1"
-    echo "[OK]"
+    hostnamectl set-hostname "$1" && echo "[OK]"
     echo
     echo "Checking result"
     echo "uname -n"
@@ -38,11 +37,9 @@ else
 
     echo "[ 2/3 Try to generate new machine-id ]"
     echo "rm -f /etc/machine-id"
-    rm -f /etc/machine-id
-    echo "[OK]"
+    rm -f /etc/machine-id && echo "[OK]"
     echo "dbus-uuidgen --ensure=/etc/machine-id"
-    dbus-uuidgen --ensure=/etc/machine-id
-    echo "[OK]"
+    dbus-uuidgen --ensure=/etc/machine-id && echo "[OK]"
     echo
 
     echo "[ 3/3 Try to configure zabbix-agent2 ]"
@@ -55,5 +52,3 @@ else
     echo "shutdown -r now"
     echo
 fi
-
-# test changes
