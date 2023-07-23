@@ -82,6 +82,7 @@ echo "runuser -l mk -c 'ssh -T git@github.com'"
 echo "runuser -l mk -c 'ssh -vT git@github.com'"
 echo "ssh 10.10.10.200"
 echo "ssh 10.10.20.200"
+echo
 
 echo "[8] removing ssh_keys folder"
 echo "if all test passed you can remove key folder with command:"
