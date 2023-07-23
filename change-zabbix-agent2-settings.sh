@@ -46,7 +46,7 @@ else
     echo "### After all ###"
     echo
     echo "# If all seems correct, run:"
-    echo "# zabbix_agent2 -p"
+    echo "# zabbix_agent2 -p | head"
     echo "# systemctl enable --now zabbix-agent2"
     echo "# tail -f /var/log/zabbix/zabbix_agent2.log"
     echo
