@@ -1,5 +1,14 @@
 #!/bin/bash
 
+###########################################################################################
+# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_ssh_keys.sh
+
+if [ ! -d "/root/ssh_keys" ]
+then
+    echo "You have to add keys to /root/ssh_keys before running the script "
+    exit 1
+fi
+
 echo "Script will do several work:"
 echo " 1. install root's ssh-keys"
 echo " 2. install mk's ssh-keys"
