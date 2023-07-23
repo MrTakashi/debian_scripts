@@ -77,14 +77,15 @@ systemctl restart sshd && echo [OK]
 echo "sshd server restarted and you can try to connect with ssh-keys"
 echo
 
-echo "[7] testing"
-runuser -l mk -c 'ssh -T git@github.com'
-#runuser -l mk -c 'ssh -vT git@github.com'
-echo
+echo "[7] for testing purpose you can use commands:"
+echo "runuser -l mk -c 'ssh -T git@github.com'"
+echo "runuser -l mk -c 'ssh -vT git@github.com'"
+echo "ssh 10.10.10.200"
+echo "ssh 10.10.20.200"
 
 echo "[8] removing ssh_keys folder"
+echo "if all test passed you can remove key folder with command:"
 echo "rm -r /root/ssh_keys"
-rm -r /root/ssh_keys && echo [OK]
 echo
 
 ###### add several hosts to ~/.ssh/known_hosts
