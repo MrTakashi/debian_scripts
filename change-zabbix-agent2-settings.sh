@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ###########################################################################################
-# wget -qO - https://raw.githubusercontent.com/MrTakashi/bash-scripts/master/change-zabbix-agent2-settings.sh | bash -s `uname -n` 10.10.20.120
-# wget -qO - https://raw.githubusercontent.com/MrTakashi/bash-scripts/master/change-zabbix-agent2-settings.sh | bash -s `uname -n` 10.10.20.242
+# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/change-zabbix-agent2-settings.sh | bash -s `uname -n` 10.10.20.120
+# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/change-zabbix-agent2-settings.sh | bash -s `uname -n` 10.10.20.242
 
 
 if [ -z "$1" ]; then
