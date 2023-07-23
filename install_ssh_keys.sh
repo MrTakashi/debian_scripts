@@ -33,7 +33,7 @@ cp /root/ssh_keys/root/id_ed25519 ~/.ssh/id_ed25519 && echo "[OK]"
 echo "Changing access: chmod 400 ~/.ssh/id_ed25519"
 chmod 400 ~/.ssh/id_ed25519 && echo "[OK]"
 echo
-echo "[2] installing keys for mk#"
+echo "[2] installing keys for mk"
 echo "Preparing folder for public keys: mkdir /home/mk/.ssh -p && chmod 700 /home/mk/.ssh && chown mk:mk /home/mk/.ssh"
 mkdir /home/mk/.ssh -p && chmod 700 /home/mk/.ssh && chown mk:mk /home/mk/.ssh && echo "[OK]"
 echo "Coping public key: cp /root/ssh_keys/mk/id_ed25519.pub /home/mk/.ssh/authorized_keys"
