@@ -6,7 +6,7 @@
 syntax enable
 set mouse-=a
 set nowrap
-set number!
+" set number!
 set encoding=utf8
 
 " Always show current position
