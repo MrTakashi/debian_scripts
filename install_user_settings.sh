@@ -15,7 +15,7 @@ echo
 
 echo "Install ~/.vimrc for root:"
 echo "wget -qO - http://i.sspx.ru/2 >> ~/.vimrc"
-wget -qO - http://i.sspx.ru/2 >> ~/.bashrc && echo "[OK]"
+wget -qO - http://i.sspx.ru/2 >> ~/.vimrc && echo "[OK]"
 echo
 
 echo "Install ~/.vimrc for mk:"
