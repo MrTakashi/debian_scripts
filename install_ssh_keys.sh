@@ -11,8 +11,8 @@ fi
 
 echo
 echo "[ Script will do several tasks: ]"
-echo "[ 1 ] install root's keys"
-echo "[ 2 ] install mk's keys"
+echo "[ 1 ] install root's keys (public and private)"
+echo "[ 2 ] install mk's keys (public and private + github private)"
 echo "[ 3 ] Create ~/.ssh/config for root"
 echo "[ 4 ] Create ~/.ssh/config for mk"
 echo "[ 5 ] Disable PasswordAuthentication"
@@ -50,8 +50,8 @@ chmod 400 /home/mk/.ssh/id_ed25519 && chown mk:mk /home/mk/.ssh/id_ed25519 && ec
 echo
 echo "Coping private key for github.com: cp /root/ssh_keys/mk/mk_github_ed25519 /home/mk/.ssh/mk_github_ed25519"
 cp /root/ssh_keys/mk/mk_github_ed25519 /home/mk/.ssh/mk_github_ed25519 && echo "[OK]"
-echo "Changing access: chmod 400 /home/mk/.ssh/id_ed25519 && chown mk:mk /home/mk/.ssh/id_ed25519"
-chmod 400 /home/mk/.ssh/id_ed25519 && chown mk:mk /home/mk/.ssh/id_ed25519 && echo "[OK]"
+echo "Changing access: chmod 400 /home/mk/.ssh/mk_github_ed25519 && chown mk:mk /home/mk/.ssh/id_ed25519"
+chmod 400 /home/mk/.ssh/mk_github_ed25519 && chown mk:mk /home/mk/.ssh/mk_github_ed25519 && echo "[OK]"
 echo
 
 echo "[3] Create ~/.ssh/config for root (disable strict host key checking)"
