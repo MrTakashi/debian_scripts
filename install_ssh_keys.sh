@@ -39,7 +39,7 @@ echo "[2] Install mk's keys"
 
 username="mk"
 if ! grep -q "^${username}:" /etc/passwd; then
-  echo "User 'mk' does not exist"
+  echo "Need to add user 'mk'"
   useradd -m "$username" && echo "[OK]"
   echo
 fi
