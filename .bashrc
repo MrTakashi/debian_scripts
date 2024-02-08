@@ -49,5 +49,7 @@
  ## Colorize the grep command output for ease of use (good for log files)##
  alias grep='grep --color=auto'
 
+ alias f=far2l
+
 ##### mk settings for DynaConf
  export ENV_FOR_DYNACONF=production
