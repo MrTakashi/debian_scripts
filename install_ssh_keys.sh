@@ -18,7 +18,7 @@ echo "[ 4 ] Create ~/.ssh/config for mk"
 echo "[ 5 ] Disable PasswordAuthentication"
 echo "[ 6 ] Restart sshd"
 echo "[ 7 ] Show test commands"
-echo "[ 8 ] Remove ssh_keys folder"
+echo "[ 8 ] Add user mk_backup"
 echo
 
 echo "[1] Install root's keys"
@@ -38,9 +38,10 @@ echo
 echo "[2] Install mk's keys"
 
 username="mk"
+shell="/bin/bash"
 if ! grep -q "^${username}:" /etc/passwd; then
-  echo "Need to add user 'mk'"
-  useradd -m "$username" && echo "[OK]"
+  echo "Try to create new user '$username' with shell: $shell"
+  useradd -m -s $shell $username && echo "[OK]"
   echo
 fi
 
@@ -90,7 +91,29 @@ echo "ssh 10.10.10.200"
 echo "ssh 10.10.20.200"
 echo
 
-echo "[8] Removing ssh_keys folder"
+echo "[8] Add user 'mk_backup'"
+username="mk_backup"
+shell="/usr/sbin/nologin"
+if ! grep -q "^${username}:" /etc/passwd; then
+  echo "Try to create new user '$username' with shell: $shell"
+  useradd -m -s $shell $username && echo "[OK]"
+  echo
+fi
+
+echo "Preparing folder for public keys: mkdir /home/$username/.ssh -p && chmod 700 /home/$username/.ssh && chown $username:$username /home/$username/.ssh"
+mkdir /home/$username/.ssh -p && chmod 700 /home/$username/.ssh && chown $username:$username /home/$username/.ssh && echo "[OK]"
+echo "Coping public key: cp /root/ssh_keys/$username/id_ed25519.pub /home/$username/.ssh/authorized_keys"
+cp /root/ssh_keys/$username/id_ed25519.pub /home/$username/.ssh/authorized_keys && echo "[OK]"
+echo "Changing access: chmod 600 /home/$username/.ssh/authorized_keys && chown $username:$username /home/$username/.ssh/authorized_keys"
+chmod 600 /home/$username/.ssh/authorized_keys && chown $username:$username /home/$username/.ssh/authorized_keys && echo "[OK]"
+echo
+echo "Coping private key: cp /root/ssh_keys/$username/id_ed25519 /home/$username/.ssh/id_ed25519"
+cp /root/ssh_keys/$username/id_ed25519 /home/$username/.ssh/id_ed25519 && echo "[OK]"
+echo "Changing access: chmod 400 /home/$username/.ssh/id_ed25519 && chown $username:$username /home/$username/.ssh/id_ed25519"
+chmod 400 /home/$username/.ssh/id_ed25519 && chown $username:$username /home/$username/.ssh/id_ed25519 && echo "[OK]"
+echo
+
+echo "**********************************************************"
 echo "if all test passed you can remove key folder with command:"
 echo "rm -r /root/ssh_keys"
 echo
