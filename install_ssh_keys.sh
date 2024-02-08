@@ -36,6 +36,14 @@ chmod 400 ~/.ssh/id_ed25519 && echo "[OK]"
 echo
 
 echo "[2] Install mk's keys"
+
+username="mk"
+if ! grep -q "^${username}:" /etc/passwd; then
+  echo "User 'mk' does not exist"
+  useradd -m "$username" && echo "[OK]"
+  echo
+fi
+
 echo "Preparing folder for public keys: mkdir /home/mk/.ssh -p && chmod 700 /home/mk/.ssh && chown mk:mk /home/mk/.ssh"
 mkdir /home/mk/.ssh -p && chmod 700 /home/mk/.ssh && chown mk:mk /home/mk/.ssh && echo "[OK]"
 echo "Coping public key: cp /root/ssh_keys/mk/id_ed25519.pub /home/mk/.ssh/authorized_keys"
