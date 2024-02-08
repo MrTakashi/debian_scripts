@@ -114,9 +114,8 @@ chmod 400 /home/$username/.ssh/id_ed25519 && chown $username:$username /home/$us
 echo
 
 echo "**********************************************************"
-echo "if all test passed you can remove key folder with command:"
-echo "rm -r /root/ssh_keys"
-echo
+echo "If all test passed you can remove folder with the command:"
+echo "rm -rf /root/ssh_keys"
 
 ###### add several hosts to ~/.ssh/known_hosts
 #echo
