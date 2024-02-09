@@ -1,3 +1,8 @@
+#!/bin/bash
+
+##############################################################################################################
+# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_user_settings.sh | bash
+
 echo "[ Script will do several tasks: ]"
 echo "[ 1 ] install ~/.bashrc for root and for mk"
 echo "[ 2 ] install ~/.vimrc for root and for mk"
