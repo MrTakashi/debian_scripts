@@ -1,6 +1,6 @@
 #!/bin/bash
 
-###########################################################################################
+#########################################################################################################
 # wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_ssh_keys.sh | bash
 
 if [ ! -d "/root/ssh_keys" ]
@@ -76,12 +76,6 @@ cp /root/ssh_keys/mk/config /home/mk/.ssh/config && echo "[OK]"
 echo "chown mk:mk /home/mk/.ssh/config && chmod 600 /home/mk/.ssh/config"
 chown mk:mk /home/mk/.ssh/config && chmod 600 /home/mk/.ssh/config && echo "[OK]"
 
-username="mk_backup"
-echo "[4.1] Create ~/.ssh/config for $username (disable strict host key checking)"
-echo "cp /root/ssh_keys/$username/config /home/$username/.ssh/config"
-cp /root/ssh_keys/$username/config /home/$username/.ssh/config && echo "[OK]"
-echo "chown $username:$username /home/$username/.ssh/config && chmod 600 /home/$username/.ssh/config"
-chown $username:$username /home/$username/.ssh/config && chmod 600 /home/$username/.ssh/config && echo "[OK]"
 
 echo "[5] Disabling PasswordAuthentication: \"PasswordAuthentication no\" > /etc/ssh/sshd_config.d/disable_password_auth.conf"
 echo "PasswordAuthentication no" > /etc/ssh/sshd_config.d/disable_password_auth.conf
@@ -120,6 +114,12 @@ cp /root/ssh_keys/$username/id_ed25519 /home/$username/.ssh/id_ed25519 && echo "
 echo "Changing access: chmod 400 /home/$username/.ssh/id_ed25519 && chown $username:$username /home/$username/.ssh/id_ed25519"
 chmod 400 /home/$username/.ssh/id_ed25519 && chown $username:$username /home/$username/.ssh/id_ed25519 && echo "[OK]"
 echo
+
+echo "Create ~/.ssh/config for $username (disable strict host key checking)"
+echo "cp /root/ssh_keys/$username/config /home/$username/.ssh/config"
+cp /root/ssh_keys/$username/config /home/$username/.ssh/config && echo "[OK]"
+echo "chown $username:$username /home/$username/.ssh/config && chmod 600 /home/$username/.ssh/config"
+chown $username:$username /home/$username/.ssh/config && chmod 600 /home/$username/.ssh/config && echo "[OK]"
 
 echo "**********************************************************"
 echo "If all test passed you can remove folder with the command:"
