@@ -96,6 +96,7 @@ echo
 echo "[8] Add user 'mk_backup'"
 username="mk_backup"
 shell="/usr/sbin/nologin"
+shell="/bin/bash"
 if ! grep -q "^${username}:" /etc/passwd; then
   echo "Try to create new user '$username' with shell: $shell"
   useradd -m -s $shell $username && echo "[OK]"
