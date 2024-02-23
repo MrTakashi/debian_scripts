@@ -5,6 +5,7 @@
 
 # Default Zabbix Server IP
 default_zabbix_server_ip="10.10.20.120"
+default_agent_hostname=$(uname -n)
 
 # Function to check if the script is running with root privileges
 check_root_privileges() {
@@ -28,12 +29,13 @@ install_zabbix_agent() {
 # Function to configure Zabbix Agent 2
 configure_zabbix_agent() {
     # Prompt for Zabbix Server IP
+    echo
     read -p "Enter Zabbix Server IP [$default_zabbix_server_ip]: " zabbix_server_ip
     zabbix_server_ip="${zabbix_server_ip:-$default_zabbix_server_ip}"
 
     # Set hostname
-    read -p "Enter hostname for this agent: " agent_hostname
-
+    read -p "Enter hostname for this agent [$default_agent_hostname]: " agent_hostname
+    agent_hostname="${agent_hostname:-$default_agent_hostname}"
     # Configure Zabbix Agent 2
     sed -i "s/^Server=127.0.0.1/Server=$zabbix_server_ip/" /etc/zabbix/zabbix_agent2.conf
     sed -i "s/^ServerActive=127.0.0.1/ServerActive=$zabbix_server_ip/" /etc/zabbix/zabbix_agent2.conf
