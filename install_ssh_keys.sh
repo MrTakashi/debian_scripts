@@ -124,8 +124,10 @@ echo "chown $username:$username /home/$username/.ssh/config && chmod 600 /home/$
 chown $username:$username /home/$username/.ssh/config && chmod 600 /home/$username/.ssh/config && echo "[OK]"
 echo
 
-echo "[9] Remove folder: rm -rf /root/ssh_keys"
-rm -rf /root/ssh_keys
+echo "[9] Remove folder: /root/ssh_keys"
+echo "rm -rf /root/ssh_keys"
+rm -rf /root/ssh_keys && echo "[OK]"
+echo
 
 echo "[10] Install settings ~/.bashrc ~/.vimrc for 'root' and for 'mk'"
 echo "wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_user_settings.sh | bash"
