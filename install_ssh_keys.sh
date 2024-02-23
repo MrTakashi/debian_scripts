@@ -20,6 +20,8 @@ echo "[ 5 ] Disable PasswordAuthentication"
 echo "[ 6 ] Restart sshd"
 echo "[ 7 ] Show test commands"
 echo "[ 8 ] Add user mk_backup"
+echo "[ 9 ] Remove folder: rm -rf /root/ssh_keys"
+echo "[ 10] Install settings ~/.bashrc ~/.vimrc for 'root' and for 'mk'"
 echo
 
 echo "[1] Install root's keys"
@@ -64,13 +66,13 @@ echo "Changing access: chmod 400 /home/mk/.ssh/mk_github_ed25519 && chown mk:mk 
 chmod 400 /home/mk/.ssh/mk_github_ed25519 && chown mk:mk /home/mk/.ssh/mk_github_ed25519 && echo "[OK]"
 echo
 
-echo "[3] Create ~/.ssh/config for root (disable strict host key checking)"
+echo "[3] Create ~/.ssh/config for 'root' (disable strict host key checking)"
 echo "cp /root/ssh_keys/root/config /root/.ssh/config"
 cp /root/ssh_keys/root/config /root/.ssh/config && echo "[OK]"
 echo "chmod 600 /root/.ssh/config"
 chmod 600 /root/.ssh/config && echo "[OK]"
 
-echo "[4] Create ~/.ssh/config for mk (disable strict host key checking + specify key for github.com)"
+echo "[4] Create ~/.ssh/config for 'mk' (disable strict host key checking + specify key for github.com)"
 echo "cp /root/ssh_keys/mk/config /home/mk/.ssh/config"
 cp /root/ssh_keys/mk/config /home/mk/.ssh/config && echo "[OK]"
 echo "chown mk:mk /home/mk/.ssh/config && chmod 600 /home/mk/.ssh/config"
@@ -115,16 +117,20 @@ cp /root/ssh_keys/$username/id_ed25519 /home/$username/.ssh/id_ed25519 && echo "
 echo "Changing access: chmod 400 /home/$username/.ssh/id_ed25519 && chown $username:$username /home/$username/.ssh/id_ed25519"
 chmod 400 /home/$username/.ssh/id_ed25519 && chown $username:$username /home/$username/.ssh/id_ed25519 && echo "[OK]"
 echo
-
-echo "Create ~/.ssh/config for $username (disable strict host key checking)"
+echo "Create ~/.ssh/config for '$username' (disable strict host key checking)"
 echo "cp /root/ssh_keys/$username/config /home/$username/.ssh/config"
 cp /root/ssh_keys/$username/config /home/$username/.ssh/config && echo "[OK]"
 echo "chown $username:$username /home/$username/.ssh/config && chmod 600 /home/$username/.ssh/config"
 chown $username:$username /home/$username/.ssh/config && chmod 600 /home/$username/.ssh/config && echo "[OK]"
+echo
 
-echo "**********************************************************"
-echo "If all test passed you can remove folder with the command:"
-echo "rm -rf /root/ssh_keys"
+echo "[9] Remove folder: rm -rf /root/ssh_keys"
+rm -rf /root/ssh_keys
+
+echo "[10] Install settings ~/.bashrc ~/.vimrc for 'root' and for 'mk'"
+echo "wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_user_settings.sh | bash"
+wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_user_settings.sh | bash
+
 
 ###### add several hosts to ~/.ssh/known_hosts
 #echo
