@@ -35,10 +35,9 @@ configure_zabbix_agent() {
     read -p "Enter hostname for this agent: " agent_hostname
 
     # Configure Zabbix Agent 2
-    sed -i "s/Server=127.0.0.1/Server=$zabbix_server_ip/" /etc/zabbix/zabbix_agent2.conf
-    sed -i "s/ServerActive=127.0.0.1/ServerActive=$zabbix_server_ip/" /etc/zabbix/zabbix_agent2.conf
-
-    sed -i "s/Hostname=Zabbix server/Hostname=$agent_hostname/" /etc/zabbix/zabbix_agent2.conf
+    sed -i "s/^Server=127.0.0.1/Server=$zabbix_server_ip/" /etc/zabbix/zabbix_agent2.conf
+    sed -i "s/^ServerActive=127.0.0.1/ServerActive=$zabbix_server_ip/" /etc/zabbix/zabbix_agent2.conf
+    sed -i "s/^Hostname=.*/Hostname=$agent_hostname/" /etc/zabbix/zabbix_agent2.conf
 }
 
 # Function to start Zabbix Agent 2
@@ -56,8 +55,16 @@ main() {
     start_zabbix_agent
     echo "Zabbix Agent 2 installed and configured successfully."
     echo
+    echo "grep Hostname= /etc/zabbix/zabbix_agent2.conf"
+    grep Hostname= /etc/zabbix/zabbix_agent2.conf
+    echo "grep Server= /etc/zabbix/zabbix_agent2.conf"
+    grep Server= /etc/zabbix/zabbix_agent2.conf
+    echo "grep ServerActive= /etc/zabbix/zabbix_agent2.conf"
+    grep ServerActive= /etc/zabbix/zabbix_agent2.conf
+    echo
     echo "### May be you need these commands ###"
     echo
+    echo "# vim /etc/zabbix/zabbix_agent2.conf"
     echo "# tail -f /var/log/zabbix/zabbix_agent2.log"
     echo "# zabbix_agent2 -p | head"
     echo "# systemctl stop zabbix-agent2"
