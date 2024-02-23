@@ -54,9 +54,20 @@ start_zabbix_agent() {
 # Main function
 main() {
     check_root_privileges
-    install_zabbix_agent
+
+    # Ask for confirmation before installing Zabbix Agent
+    read -p "Do you want to install Zabbix Agent? [Y/n]: " install_zabbix
+    install_zabbix="${install_zabbix:-Y}" # Default to yes if no option provided
+
+    if [[ $install_zabbix =~ ^[Yy]$ ]]; then
+        install_zabbix_agent
+    else
+        echo "Zabbix Agent installation skipped."
+    fi
+
     configure_zabbix_agent
     start_zabbix_agent
+
     echo "Zabbix Agent 2 installed and configured successfully."
     echo
     echo "grep -E '^Hostname|^Server|^ServerActive' /etc/zabbix/zabbix_agent2.conf"
