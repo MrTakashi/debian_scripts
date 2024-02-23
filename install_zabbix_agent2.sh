@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ##############################################################################################################
-# bash -c "$(wget -O- https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh)"
 # bash -c "$(curl -fsSL https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh)"
+# bash -c "$(wget -O- https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh)"
 # wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh | bash
 
 # Default Zabbix Server IP
@@ -60,11 +60,11 @@ main() {
     echo "Zabbix Agent 2 installed and configured successfully."
     echo
     echo "grep ^Hostname= /etc/zabbix/zabbix_agent2.conf"
-    grep Hostname= /etc/zabbix/zabbix_agent2.conf
+    grep ^Hostname= /etc/zabbix/zabbix_agent2.conf
     echo "grep ^Server= /etc/zabbix/zabbix_agent2.conf"
-    grep Server= /etc/zabbix/zabbix_agent2.conf
+    grep ^Server= /etc/zabbix/zabbix_agent2.conf
     echo "grep ^ServerActive= /etc/zabbix/zabbix_agent2.conf"
-    grep ServerActive= /etc/zabbix/zabbix_agent2.conf
+    grep ^ServerActive= /etc/zabbix/zabbix_agent2.conf
     echo
     echo "### May be you need these commands ###"
     echo
