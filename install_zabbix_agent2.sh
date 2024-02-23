@@ -57,11 +57,11 @@ main() {
     start_zabbix_agent
     echo "Zabbix Agent 2 installed and configured successfully."
     echo
-    echo "grep Hostname= /etc/zabbix/zabbix_agent2.conf"
+    echo "grep ^Hostname= /etc/zabbix/zabbix_agent2.conf"
     grep Hostname= /etc/zabbix/zabbix_agent2.conf
-    echo "grep Server= /etc/zabbix/zabbix_agent2.conf"
+    echo "grep ^Server= /etc/zabbix/zabbix_agent2.conf"
     grep Server= /etc/zabbix/zabbix_agent2.conf
-    echo "grep ServerActive= /etc/zabbix/zabbix_agent2.conf"
+    echo "grep ^ServerActive= /etc/zabbix/zabbix_agent2.conf"
     grep ServerActive= /etc/zabbix/zabbix_agent2.conf
     echo
     echo "### May be you need these commands ###"
