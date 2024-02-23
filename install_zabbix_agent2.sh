@@ -1,12 +1,10 @@
 #!/bin/bash
 
 ##############################################################################################################
-# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_user_settings.sh | bash
-
+# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh | bash
 
 # Default Zabbix Server IP
 default_zabbix_server_ip="10.10.20.120"
-
 
 # Function to check if the script is running with root privileges
 check_root_privileges() {
