@@ -1,6 +1,8 @@
 #!/bin/bash
 
 ##############################################################################################################
+# bash -c "$(wget -O- https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh)"
+# bash -c "$(curl -fsSL https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh)"
 # wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh | bash
 
 # Default Zabbix Server IP
