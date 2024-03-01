@@ -29,6 +29,7 @@
  alias myip='wget -qO- eth0.me && wget -qO- ifconfig.co'
 #  alias myip='curl ifconfig.me ; echo'
  alias myip_='curl -s 'https://ifconfig.co/json' | jq '
+ alias myip_ip='curl -s 'https://ifconfig.co/json' | jq -r '.ip''
 
  ## history
  alias h='history'
