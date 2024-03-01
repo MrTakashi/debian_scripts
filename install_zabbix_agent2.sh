@@ -1,9 +1,8 @@
 #!/bin/bash
 
 ##############################################################################################################
-# bash -c "$(curl -fsSL https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh)"
 # bash -c "$(wget -O- https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh)"
-# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh | bash
+# bash -c "$(curl -fsSL https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh)"
 
 # Default Zabbix Server IP
 default_zabbix_server_address="10.10.20.120, prutik.ddns.net"
@@ -80,24 +79,34 @@ configure_zabbix_agent() {
     read -p "Enter hostname for this agent [$default_agent_hostname]: " agent_hostname
     agent_hostname="${agent_hostname:-$default_agent_hostname}"
     # Configure Zabbix Agent 2
+
     sed -i "s/^Server=127.0.0.1/Server=$zabbix_server_address/" /etc/zabbix/zabbix_agent2.conf
-#    sed -i "s/^ServerActive=127.0.0.1/ServerActive=$zabbix_server_address/" /etc/zabbix/zabbix_agent2.conf
+
+    # Comment ServerActive line
+    sed -i 's/^\(ServerActive.*\)/#\1/' /etc/zabbix/zabbix_agent2.conf
+
     sed -i "s/^Hostname=.*/Hostname=$agent_hostname/" /etc/zabbix/zabbix_agent2.conf
 }
 
-# Function to stop Zabbix Agent 2
-stop_zabbix_agent() {
-#    systemctl start zabbix-agent2
-#    systemctl enable zabbix-agent2
-    systemctl stop zabbix-agent2
-#    systemctl status zabbix-agent2
-}
-
-start_zabbix_agent() {
-    systemctl start zabbix-agent2
-#    systemctl enable zabbix-agent2
-#    systemctl stop zabbix-agent2
-#    systemctl status zabbix-agent2
+print_commands() {
+    echo "Zabbix Agent 2 installed and configured successfully."
+    echo
+    echo "grep -E '^Hostname|^Server|^ServerActive' /etc/zabbix/zabbix_agent2.conf"
+    grep -E '^Hostname|^Server|^ServerActive' /etc/zabbix/zabbix_agent2.conf
+    echo
+    echo "### May be you need these commands ###"
+    echo
+    echo "# vim /etc/zabbix/zabbix_agent2.conf"
+    echo
+    echo "# tail -f /var/log/zabbix/zabbix_agent2.log"
+    echo "# zabbix_agent2 -p | head"
+    echo
+    echo "# systemctl stop zabbix-agent2"
+    echo "# systemctl status zabbix-agent2"
+    echo "# systemctl start zabbix-agent2"
+    echo "# systemctl restart zabbix-agent2"
+    echo "# systemctl enable zabbix-agent2"
+    echo
 }
 
 # Main function
@@ -114,29 +123,13 @@ main() {
         echo "Zabbix Agent installation skipped."
     fi
 
-    stop_zabbix_agent
+    systemctl stop zabbix-agent2
     configure_zabbix_agent
-    start_zabbix_agent
+    systemctl start zabbix-agent2
+
+    print_commands
 
     tail -f /var/log/zabbix/zabbix_agent2.log
-
-    echo "Zabbix Agent 2 installed and configured successfully."
-    echo
-    echo "grep -E '^Hostname|^Server|^ServerActive' /etc/zabbix/zabbix_agent2.conf"
-    grep -E '^Hostname|^Server|^ServerActive' /etc/zabbix/zabbix_agent2.conf
-    echo
-    echo "### May be you need these commands ###"
-    echo
-    echo "# vim /etc/zabbix/zabbix_agent2.conf"
-    echo
-    echo "# tail -f /var/log/zabbix/zabbix_agent2.log"
-    echo "# zabbix_agent2 -p | head"
-    echo
-    echo "# systemctl stop zabbix-agent2"
-    echo "# systemctl status zabbix-agent2"
-    echo "# systemctl start zabbix-agent2"
-    echo "# systemctl enable zabbix-agent2"
-    echo
 }
 
 # Execute main function
