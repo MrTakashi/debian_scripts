@@ -6,7 +6,7 @@
 # wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_zabbix_agent2.sh | bash
 
 # Default Zabbix Server IP
-default_zabbix_server_address="pru.sspx.ru"
+default_zabbix_server_address="10.10.20.120, prutik.ddns.net"
 default_agent_hostname=$(uname -n)
 
 # Function to check if the script is running with root privileges
@@ -81,7 +81,7 @@ configure_zabbix_agent() {
     agent_hostname="${agent_hostname:-$default_agent_hostname}"
     # Configure Zabbix Agent 2
     sed -i "s/^Server=127.0.0.1/Server=$zabbix_server_address/" /etc/zabbix/zabbix_agent2.conf
-    sed -i "s/^ServerActive=127.0.0.1/ServerActive=$zabbix_server_address/" /etc/zabbix/zabbix_agent2.conf
+#    sed -i "s/^ServerActive=127.0.0.1/ServerActive=$zabbix_server_address/" /etc/zabbix/zabbix_agent2.conf
     sed -i "s/^Hostname=.*/Hostname=$agent_hostname/" /etc/zabbix/zabbix_agent2.conf
 }
 
@@ -90,7 +90,14 @@ stop_zabbix_agent() {
 #    systemctl start zabbix-agent2
 #    systemctl enable zabbix-agent2
     systemctl stop zabbix-agent2
-    systemctl status zabbix-agent2
+#    systemctl status zabbix-agent2
+}
+
+start_zabbix_agent() {
+    systemctl start zabbix-agent2
+#    systemctl enable zabbix-agent2
+#    systemctl stop zabbix-agent2
+#    systemctl status zabbix-agent2
 }
 
 # Main function
@@ -107,8 +114,11 @@ main() {
         echo "Zabbix Agent installation skipped."
     fi
 
-    configure_zabbix_agent
     stop_zabbix_agent
+    configure_zabbix_agent
+    start_zabbix_agent
+
+    tail -f /var/log/zabbix/zabbix_agent2.log
 
     echo "Zabbix Agent 2 installed and configured successfully."
     echo
