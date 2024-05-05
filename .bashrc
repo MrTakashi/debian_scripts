@@ -1,6 +1,7 @@
 
+
 ###########################################################################################
-# sudo ansible-playbook playbooks/common/bashrc_add_config_for_root.yml -l host
+# sudo ansible-playbook playbooks/common/bashrc_append_lines.yml -l host
 #
 # wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc
 # runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc'
