@@ -1,5 +1,7 @@
 
 ###########################################################################################
+# sudo ansible-playbook playbooks/common/bashrc_add_config_for_root.yml -l host
+#
 # wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc
 # runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc'
 
@@ -46,6 +48,7 @@
  alias va='source ./venv/bin/activate'
 
  alias gp='git pull'
+ alias gs='git stash'
 
  ## Colorize the grep command output for ease of use (good for log files)##
  alias grep='grep --color=auto'
