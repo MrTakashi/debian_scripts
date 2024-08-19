@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# активируем опцию, которая прерывает выполнение скрипта, если любая команда завершается с ненулевым статусом
+set -e
+
 #########################################################################################################
-# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_ssh_keys.sh | bash
+# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/install_ssh_keys_for_root.sh | bash
 
 if [ ! -d "/root/ssh_keys" ]
 then
@@ -23,22 +26,24 @@ echo
 echo "[1] Install root's keys"
 echo "Preparing folder for keys: mkdir ~/.ssh -p && chmod 700 ~/.ssh"
 mkdir ~/.ssh -p && chmod 700 ~/.ssh && echo "[OK]"
-echo "Coping key: cp /root/ssh_keys/root/id_ed25519.pub ~/.ssh/authorized_keys"
-cp /root/ssh_keys/root/id_ed25519.pub ~/.ssh/authorized_keys && echo "[OK]"
+echo "Moving key: cp /root/ssh_keys/root/id_ed25519.pub ~/.ssh/authorized_keys"
+mv /root/ssh_keys/root/id_ed25519.pub ~/.ssh/authorized_keys && echo "[OK]"
 echo "Changing access: chmod 600 ~/.ssh/authorized_keys"
 chmod 600 ~/.ssh/authorized_keys && echo "[OK]"
 echo
-echo "Copy private key: cp /root/ssh_keys/root/id_ed25519 ~/.ssh/id_ed25519"
-cp /root/ssh_keys/root/id_ed25519 ~/.ssh/id_ed25519 && echo "[OK]"
+echo "Moving private key: cp /root/ssh_keys/root/id_ed25519 ~/.ssh/id_ed25519"
+mv /root/ssh_keys/root/id_ed25519 ~/.ssh/id_ed25519 && echo "[OK]"
 echo "Changing access: chmod 400 ~/.ssh/id_ed25519"
 chmod 400 ~/.ssh/id_ed25519 && echo "[OK]"
 echo
+
 ############################################################################################################
 echo "[2] Create ~/.ssh/config for 'root' (disable strict host key checking)"
-echo "cp /root/ssh_keys/root/config /root/.ssh/config"
-cp /root/ssh_keys/root/config /root/.ssh/config && echo "[OK]"
+echo "Moving config: mv /root/ssh_keys/root/config /root/.ssh/config"
+mv /root/ssh_keys/root/config /root/.ssh/config && echo "[OK]"
 echo "chmod 600 /root/.ssh/config"
 chmod 600 /root/.ssh/config && echo "[OK]"
+echo
 
 ############################################################################################################
 echo "[3] Disabling PasswordAuthentication for SSH: \"PasswordAuthentication no\" > /etc/ssh/sshd_config.d/no_pass_auth.conf"
@@ -48,7 +53,7 @@ echo
 ############################################################################################################
 echo "[4] Restarting sshd"
 systemctl restart sshd && echo [OK]
-echo "sshd server restarted and you can try to connect with ssh-keys"
+echo "sshd server restarted - you can try to connect with ssh-keys"
 echo
 
 ############################################################################################################
@@ -59,16 +64,15 @@ echo
 
 ############################################################################################################
 echo "[6] Next commands"
-echo ""
-echo "runuser -l mk -c 'ssh -vT git@github.com'"
-echo "ssh 10.10.10.200"
-echo "ssh 10.10.20.200"
 echo
-
-echo "[10] Install settings ~/.bashrc ~/.vimrc for 'root' and for 'mk'"
-echo "wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_user_settings.sh | bash"
-wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/install_user_settings.sh | bash
-
+#echo "runuser -l mk -c 'ssh -vT git@github.com'"
+#echo "ssh 10.10.10.200"
+#echo "ssh 10.10.20.200"
+#echo
+echo "sudo ansible zabbix -m command -a uptime"
+echo "sudo ansible-playbook playbooks/debian/00_update_system_and_install_packages.yml -l $(uname -n)"
+echo "sudo ansible-playbook playbooks/debian/10_bashrc_root.yml -l $(uname -n)"
+echo "sudo ansible-playbook playbooks/debian/11_vimrc_root.yml -l $(uname -n)"
 
 ###### add several hosts to ~/.ssh/known_hosts
 #echo
