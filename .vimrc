@@ -1,10 +1,9 @@
 " ###########################################################################################
-" sudo ansible-playbook playbooks/vim/3_copy_to_3_users__root__mk__mk_backup.yml
-" sudo ansible-playbook playbooks/vim/3_copy_to_3_users__root__mk__mk_backup.yml -l host
+" sudo ansible-playbook playbooks/debian/25_bashrc_vimrc_mc.yml --vault-password-file /home/mk/vaultpass
 "
-" wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc
-" runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc'
-" runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc'
+" old: wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc
+" old: runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc'
+" old: runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc'
 
 " use extended feature of vim (no compatible with vi)
 set nocompatible
@@ -61,8 +60,8 @@ set mouse=r
 set autoindent
 
 " show line number
-" opposite is [ set nonumber ]
-" set number
+set number
+" opposite is [ set nonumber or set number!]
 
 " visualize break ( $ ) or tab ( ^I )
 " set list
