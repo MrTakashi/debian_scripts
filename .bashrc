@@ -1,9 +1,8 @@
-
 ###########################################################################################
 # sudo ansible-playbook playbooks/debian/25_bashrc_vimrc_mc.yml --vault-password-file /home/mk/vaultpass
 #
-# wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc
-# runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc'
+# old: wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc
+# old: runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc'
 
 ###### mk settings for history
  # don't put lines starting with space in the history
