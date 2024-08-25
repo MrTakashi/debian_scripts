@@ -17,7 +17,7 @@ set fileencodings=utf-8
 
 " take backup
 " opposite is [ set nobackup ]
-set backup
+" set backup
 
 " specify backup directory
 set backupdir=~/backup
