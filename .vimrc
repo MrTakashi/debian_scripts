@@ -20,7 +20,7 @@ set fileencodings=utf-8
 " set backup
 
 " specify backup directory
-set backupdir=~/backup
+" set backupdir=~/backup
 
 " number of search histories
 set history=50
