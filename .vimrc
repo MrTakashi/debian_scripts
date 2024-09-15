@@ -60,7 +60,7 @@ set mouse=r
 set autoindent
 
 " show line number
-set number
+" set number
 " opposite is [ set nonumber or set number!]
 
 " visualize break ( $ ) or tab ( ^I )
