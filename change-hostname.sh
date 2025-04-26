@@ -43,14 +43,6 @@ generate_machine_id() {
     echo
 }
 
-# Function to configure zabbix-agent2
-configure_zabbix_agent2() {
-    echo "[ 3/3 Configuring zabbix-agent2 ]"
-    wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/master/change-zabbix-agent2-settings.sh | bash -s $(uname -n) 10.10.20.242
-    echo "[OK]"
-    echo
-}
-
 # Function to prompt for reboot
 prompt_reboot() {
     echo "[ Next step -> Reboot ]"
@@ -61,6 +53,7 @@ prompt_reboot() {
 
 # Check if argument is provided
 if [ -z "$1" ]; then
+    echo "Error: No hostname provided!" >&2
     usage
     exit 1
 fi
@@ -69,13 +62,4 @@ fi
 set_hostname "$1"
 update_hosts_file "$1"
 generate_machine_id
-
-# Prompt user whether to configure zabbix-agent2
-read -p "Do you want to configure zabbix-agent2? (Y/N, default=N): " configure_zabbix
-configure_zabbix=${configure_zabbix:-N}  # Default value is N if user presses Enter
-
-if [ "$configure_zabbix" = "Y" ] || [ "$configure_zabbix" = "y" ]; then
-    configure_zabbix_agent2
-fi
-
 prompt_reboot
