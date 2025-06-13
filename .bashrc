@@ -5,6 +5,7 @@
 # old: runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.bashrc >> ~/.bashrc'
 
 ###### mk settings for history
+# ~/.bashrc
  # don't put lines starting with space in the history
  # and don't put the same as the most recent command used
  HISTCONTROL=ignorespace
@@ -44,7 +45,7 @@
 
  ## create and use Python virtual environment
  alias ve='python3 -m venv ./venv'
- alias va='source ./venv/bin/activate'
+ alias va='source ./.venv/bin/activate'
 
  alias gp='git pull'
  alias gs='git stash'
