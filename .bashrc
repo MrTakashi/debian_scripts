@@ -56,5 +56,8 @@
 #  alias f=far2l
 #  alias yt=~/.local/bin/yt-dlp --proxy 59a9.l.time4vps.cloud:8888 --merge-output-format mp4 -f "bv*+ba/b" -S "res,br"
 
+##### setup system default editor to vim
+ export SYSTEMD_EDITOR=vim
+
 ##### mk settings for DynaConf
  export ENV_FOR_DYNACONF=production
