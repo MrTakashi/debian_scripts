@@ -27,11 +27,17 @@
  shopt -s checkwinsize
 
 ###### mk aliases
+
+ ## ip info
+ ipa() {
+   curl -s "https://ifconfig.co/json?ip=$1" | jq 'del(.user_agent)'
+ }
+
  ## myip
  alias myip='wget -qO- eth0.me && wget -qO- ifconfig.co'
 #  alias myip='curl ifconfig.me ; echo'
- alias myip_='curl -s 'https://ifconfig.co/json' | jq '
- alias myip_ip='curl -s 'https://ifconfig.co/json' | jq -r '.ip''
+ alias myip_='curl -s "https://ifconfig.co/json" | jq'
+ alias myip_ip='curl -s "https://ifconfig.co/json" | jq -r .ip'
 
  ## history
  alias h='history'
