@@ -49,12 +49,25 @@
  alias l='ls $LS_OPTIONS -l'
  alias ll='ls $LS_OPTIONS -lA'
 
- ## create and use Python virtual environment
+ ## python virtual environment
  alias ve='python3 -m venv ./venv'
  alias va='source ./.venv/bin/activate'
 
+ ## git
  alias gp='git pull'
  alias gs='git stash'
+
+ ## tmux
+ alias t="tmux a || tmux"
+
+ tmx() {
+  name="$1"
+  if tmux list-sessions | grep -q "^${name}:"; then
+    tmux attach -t "${name}"
+  else
+    tmux new-session -s "${name}"
+  fi
+}
 
  ## Colorize the grep command output for ease of use (good for log files)##
  alias grep='grep --color=auto'
