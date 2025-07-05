@@ -1,5 +1,5 @@
 " ###########################################################################################
-" sudo ansible-playbook playbooks/debian/25_bashrc_vimrc_mc.yml --vault-password-file /home/mk/vaultpass
+" sudo ansible-playbook playbooks/debian/25_bashrc_vimrc_mc.yml
 "
 " old: wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc
 " old: runuser -l mk -c 'wget -qO - https://raw.githubusercontent.com/MrTakashi/debian_scripts/main/.vimrc > ~/.vimrc'
