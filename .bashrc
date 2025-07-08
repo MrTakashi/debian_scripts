@@ -39,15 +39,18 @@
  alias myip_='curl -s "https://ifconfig.co/json" | jq'
  alias myip_ip='curl -s "https://ifconfig.co/json" | jq -r .ip'
 
- ## history
- alias h='history'
- alias hg='history|grep'
- alias gh='history|grep'
-
  ## files listing
  export LS_OPTIONS='--color=auto'
  alias l='ls $LS_OPTIONS -l'
  alias ll='ls $LS_OPTIONS -lA'
+
+ ## Colorize the grep command output for ease of use (good for log files)##
+ alias grep='grep --color=auto'
+
+ ## history
+ alias h='history'
+ alias hg='history|grep'
+ alias gh='history|grep'
 
  ## python virtual environment
  alias ve='python3 -m venv ./venv'
@@ -68,9 +71,6 @@
     tmux new-session -s "${name}"
   fi
 }
-
- ## Colorize the grep command output for ease of use (good for log files)##
- alias grep='grep --color=auto'
 
 #  alias f=far2l
 #  alias yt=~/.local/bin/yt-dlp --proxy 59a9.l.time4vps.cloud:8888 --merge-output-format mp4 -f "bv*+ba/b" -S "res,br"
@@ -105,7 +105,8 @@ fi
 # Настройка exa как замены ls
 if [[ -e $(which exa) ]]; then
     if [[ -n "$DISPLAY" || $(tty) == /dev/pts* ]]; then # отображать иконки если псевдотерминал
-        alias ls="exa --group --header --icons"
+#         alias ls="exa --group --header --icons"
+        alias ls="exa --group --header"
     else
         alias ls="exa --group --header"
     fi
