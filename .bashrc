@@ -40,9 +40,9 @@
  alias myip_ip='curl -s "https://ifconfig.co/json" | jq -r .ip'
 
  ## files listing
- export LS_OPTIONS='--color=auto'
- alias l='ls $LS_OPTIONS -l'
- alias ll='ls $LS_OPTIONS -lA'
+ # export LS_OPTIONS='--color=auto'
+ # alias l='ls $LS_OPTIONS -l'
+ # alias ll='ls $LS_OPTIONS -lA'
 
  ## Colorize the grep command output for ease of use (good for log files)##
  alias grep='grep --color=auto'
@@ -110,8 +110,8 @@ if [[ -e $(which exa) ]]; then
     else
         alias ls="exa --group --header"
     fi
-    alias ll="ls --long"
-    alias l="ls --long --all --header"
+    alias l="ls --long --all"
+    alias ll="ls --long --all --header"
     alias lm="ls --long --all --sort=modified"
     alias lmm="ls -lbHigUmuSa --sort=modified --time-style=long-iso"
     alias lt="ls --tree"
