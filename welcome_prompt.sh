@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# /etc/profile.d/welcome_prompt.sh
+# /etc/profile.d/welcome.sh
 # https://raw.githubusercontent.com/MrTakashi/debian_scripts/refs/heads/main/welcome_prompt.sh
 
 # Colors
