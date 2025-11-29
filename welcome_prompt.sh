@@ -50,7 +50,7 @@ DISK_FREE_PCT=$(( DISK_FREE * 100 / DISK_TOTAL ))
 echo ""
 echo "-------------------------------------------------------"
 echo "IP                   : ${LOCAL_IP:-N/A}"
-echo -e "USER@Hostname     : $USER_NAME@$HOSTNAME"
+echo -e "USER@Hostname        : $USER_NAME@$HOSTNAME"
 echo "OS Name              : $OS"
 #echo -e "USER                  : $USER_NAME"
 echo "Uptime               : $UPTIME"
