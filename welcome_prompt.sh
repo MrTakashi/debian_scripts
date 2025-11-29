@@ -44,7 +44,7 @@ DISK_TOTAL_HUMAN=$(df -h / | awk 'NR==2 {print $2}')
 DISK_FREE_HUMAN=$(df -h / | awk 'NR==2 {print $4}')
 
 echo ""
-echo -e "----- System info -----------------------------------------------"
+echo -e "----- System info ---------------------------------------------"
 echo "IP                    ${LOCAL_IP:-N/A}"
 echo -e "USER@Hostname         $USER_NAME@$HOSTNAME"
 echo "OS Name               $OS"
