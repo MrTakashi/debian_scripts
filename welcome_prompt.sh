@@ -43,27 +43,27 @@ RAM_FREE_PCT=$(( RAM_FREE * 100 / RAM_TOTAL ))
 DISK_TOTAL_HUMAN=$(df -h / | awk 'NR==2 {print $2}')
 DISK_FREE_HUMAN=$(df -h / | awk 'NR==2 {print $4}')
 
-#
-DISK_TOTAL=$(df -k / | awk 'NR==2 {print $2}')
-DISK_FREE=$(df -k / | awk 'NR==2 {print $4}')
-DISK_FREE_PCT=$(( DISK_FREE * 100 / DISK_TOTAL ))
-
 echo ""
-echo -e "=== System ${YELLOW}Status${NC} ============================================="
-echo "IP                   : ${LOCAL_IP:-N/A}"
-echo -e "USER@Hostname        : $USER_NAME@$HOSTNAME"
-echo "OS Name              : $OS"
-#echo -e "USER                  : $USER_NAME"
-echo "Uptime               : $UPTIME"
-echo "Load Average         : $LOADAVG"
+echo -e "----- ${YELLOW}System Status${NC} ---------------------------------------------"
+echo "IP                    ${LOCAL_IP:-N/A}"
+echo -e "USER@Hostname         $USER_NAME@$HOSTNAME"
+echo "OS Name               $OS"
+echo "Kernel                $(uname -r) | Processes: $(ps aux | wc -l)"
+echo "Uptime                $UPTIME"
 echo "---------------------------------------------------------------"
-echo "CPU                  : ${CPU_COUNT} CPU"
-echo "RAM                  : Total: ${RAM_TOTAL} MB, free: ${RAM_FREE} MB (${RAM_FREE_PCT}%)"
-echo "HDD (/)              : Total: ${DISK_TOTAL_HUMAN}, free: ${DISK_FREE_HUMAN} (${DISK_FREE_PCT}%)"
-echo "Network:"
+echo "CPU                   ${CPU_COUNT} CPU"
+echo "Load Average          $LOADAVG"
+echo "RAM                   Total: ${RAM_TOTAL} MB, free: ${RAM_FREE} MB (${RAM_FREE_PCT}%)"
+echo "HDD (/)               Total: ${DISK_TOTAL_HUMAN}, free: ${DISK_FREE_HUMAN} (${DISK_FREE_PCT}%)"
+echo "Network"
 ip -4 addr show | grep -oP '(?<=inet\s)\d+\.\d+\.\d+\.\d+' | grep -v '^127\.' | xargs -I {} echo "  {}"
 if command -v docker >/dev/null; then
-  echo "---------------------------------------------------------------"
-  echo "Docker: $(docker ps -q | wc -l) running containers"
+echo "---------------------------------------------------------------"
+  RUNNING=$(docker ps -q | wc -l)
+  TOTAL=$(docker container ls -aq | wc -l)
+  echo "Docker: $RUNNING running / $TOTAL total containers"
 fi
+echo "---------------------------------------------------------------"
+echo "Disks:"
+df -h --output=source,fstype,size,avail,pcent,target | awk 'NR>1 {print "  " $1 " (" $2 "): " $4 " free (" $5 " used) on " $6}'
 echo "---------------------------------------------------------------"
