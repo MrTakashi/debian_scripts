@@ -55,7 +55,7 @@ echo "CPU                   ${CPU_COUNT} CPU"
 echo "Load Average          $LOADAVG"
 echo "RAM                   Total: ${RAM_TOTAL} MB, free: ${RAM_FREE} MB (${RAM_FREE_PCT}%)"
 echo "---------------------------------------------------------------"
-echo "Network"
+echo "Network(s)"
 ip -4 addr show | grep -oP '(?<=inet\s)\d+\.\d+\.\d+\.\d+' | grep -v '^127\.' | xargs -I {} echo "  {}"
 echo "---------------------------------------------------------------"
 echo "Disks:"
@@ -65,5 +65,5 @@ if command -v docker >/dev/null; then
   RUNNING=$(docker ps -q | wc -l)
   TOTAL=$(docker container ls -aq | wc -l)
   echo "Docker: $RUNNING running / $TOTAL total containers"
+  echo "---------------------------------------------------------------"
 fi
-echo "---------------------------------------------------------------"
