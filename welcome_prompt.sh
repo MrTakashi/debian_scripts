@@ -44,7 +44,7 @@ DISK_TOTAL_HUMAN=$(df -h / | awk 'NR==2 {print $2}')
 DISK_FREE_HUMAN=$(df -h / | awk 'NR==2 {print $4}')
 
 echo ""
-echo -e "----- ${YELLOW}System Status${NC} ---------------------------------------------"
+echo -e "----- System info -----------------------------------------------"
 echo "IP                    ${LOCAL_IP:-N/A}"
 echo -e "USER@Hostname         $USER_NAME@$HOSTNAME"
 echo "OS Name               $OS"
@@ -54,7 +54,7 @@ echo "---------------------------------------------------------------"
 echo "CPU                   ${CPU_COUNT} CPU"
 echo "Load Average          $LOADAVG"
 echo "RAM                   Total: ${RAM_TOTAL} MB, free: ${RAM_FREE} MB (${RAM_FREE_PCT}%)"
-echo "HDD (/)               Total: ${DISK_TOTAL_HUMAN}, free: ${DISK_FREE_HUMAN} (${DISK_FREE_PCT}%)"
+echo "---------------------------------------------------------------"
 echo "Network"
 ip -4 addr show | grep -oP '(?<=inet\s)\d+\.\d+\.\d+\.\d+' | grep -v '^127\.' | xargs -I {} echo "  {}"
 if command -v docker >/dev/null; then
