@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # /etc/profile.d/welcome_prompt.sh
-
+# https://raw.githubusercontent.com/MrTakashi/debian_scripts/refs/heads/main/welcome_prompt.sh
 
 # Colors
 RED='\033[0;31m'
