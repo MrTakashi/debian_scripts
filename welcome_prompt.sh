@@ -57,13 +57,13 @@ echo "RAM                   Total: ${RAM_TOTAL} MB, free: ${RAM_FREE} MB (${RAM_
 echo "---------------------------------------------------------------"
 echo "Network"
 ip -4 addr show | grep -oP '(?<=inet\s)\d+\.\d+\.\d+\.\d+' | grep -v '^127\.' | xargs -I {} echo "  {}"
-if command -v docker >/dev/null; then
 echo "---------------------------------------------------------------"
+echo "Disks:"
+df -h --output=source,fstype,size,avail,pcent,target | awk 'NR>1 {print "  " $1 " (" $2 "): " $4 " free (" $5 " used) on " $6}'
+echo "---------------------------------------------------------------"
+if command -v docker >/dev/null; then
   RUNNING=$(docker ps -q | wc -l)
   TOTAL=$(docker container ls -aq | wc -l)
   echo "Docker: $RUNNING running / $TOTAL total containers"
 fi
-echo "---------------------------------------------------------------"
-echo "Disks:"
-df -h --output=source,fstype,size,avail,pcent,target | awk 'NR>1 {print "  " $1 " (" $2 "): " $4 " free (" $5 " used) on " $6}'
 echo "---------------------------------------------------------------"
