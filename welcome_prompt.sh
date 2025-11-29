@@ -4,8 +4,9 @@
 # https://raw.githubusercontent.com/MrTakashi/debian_scripts/refs/heads/main/welcome_prompt.sh
 
 # Colors
-RED='\033[0;31m'
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
+
 
 # IP первого сетевого интерфейса
 LOCAL_IP=$(ip -4 addr show | grep -oP '(?<=inet\s)\d+\.\d+\.\d+\.\d+' | grep -v '^127\.' | head -n 1)
@@ -48,8 +49,8 @@ DISK_FREE=$(df -k / | awk 'NR==2 {print $4}')
 DISK_FREE_PCT=$(( DISK_FREE * 100 / DISK_TOTAL ))
 
 echo ""
-echo "---------------------------------------------------------------"
-echo "IP                   : ${LOCAL_IP:-N/A}"
+echo -e "=== System ${YELLOW}Status${NC} ============================================="
+# echo "IP                   : ${LOCAL_IP:-N/A}"
 echo -e "USER@Hostname        : $USER_NAME@$HOSTNAME"
 echo "OS Name              : $OS"
 #echo -e "USER                  : $USER_NAME"
@@ -59,4 +60,10 @@ echo "---------------------------------------------------------------"
 echo "CPU                  : ${CPU_COUNT} CPU"
 echo "RAM                  : Total: ${RAM_TOTAL} MB, free: ${RAM_FREE} MB (${RAM_FREE_PCT}%)"
 echo "HDD (/)              : Total: ${DISK_TOTAL_HUMAN}, free: ${DISK_FREE_HUMAN} (${DISK_FREE_PCT}%)"
+echo "Network:"
+ip -4 addr show | grep -oP '(?<=inet\s)\d+\.\d+\.\d+\.\d+' | grep -v '^127\.' | xargs -I {} echo "  {}"
+if command -v docker >/dev/null; then
+  echo "---------------------------------------------------------------"
+  echo "Docker: $(docker ps -q | wc -l) running containers"
+fi
 echo "---------------------------------------------------------------"
