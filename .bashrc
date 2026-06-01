@@ -72,6 +72,15 @@
   fi
 }
 
+# attach to existance session or create new
+alias claude-tmux='tmux new-session -A -s claude "claude --channels plugin:telegram@claude-plugins-official"'
+
+# only attach
+alias claude-attach='tmux attach-session -t claude'
+
+# status check
+alias claude-status='tmux ls 2>/dev/null | grep claude || echo "session claude does not running"'
+
 #  alias f=far2l
 #  alias yt=~/.local/bin/yt-dlp --proxy 59a9.l.time4vps.cloud:8888 --merge-output-format mp4 -f "bv*+ba/b" -S "res,br"
 
